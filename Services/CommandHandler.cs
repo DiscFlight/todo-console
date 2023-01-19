@@ -14,7 +14,9 @@ namespace Todo.Services
 
         public void Run(string[] args)
         {
-            var command = args.Any() ? args[0] : "list";
+            var command = args.Any() 
+                ? args[0] 
+                : "list";
             
             var argumentBuilder = new StringBuilder();
             for (int i = 1; i < args.Length; i++)
@@ -31,18 +33,22 @@ namespace Todo.Services
                 case null:
                     ListTodos();
                     break;
+
                 case "show":
                 case "s":
                     ShowTodo(argument);
                     break;
+
                 case "add":
                 case "a":
                     AddTodo(argument);
                     break;
+
                 case "done":
                 case "d":
                     CompleteTodo(argument);
                     break;
+                    
                 case "remove":
                 case "r":
                     RemoveTodo(argument);
@@ -106,8 +112,6 @@ namespace Todo.Services
             }
 
             _dataService.DeleteTodo(id);
-
-            // Interfacer.TodoRemoved()
         }
     }
 }
