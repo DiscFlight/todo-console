@@ -15,7 +15,7 @@ todo {command} {argument}
 ```
 
 ## Commands
-### list
+### `list`
 This shows you all your Todo items in a table.
 Default command (this will run if you just enter `todo`)
 
@@ -33,7 +33,7 @@ Example result:
 └────┴────────┴──────┘
 ```
 
-### show
+### `show`
 This shows you the Todo item that you specified.
 
 Shortcuts: `s`
@@ -44,7 +44,7 @@ Example result:
 Id: 1  Name:  Test1     Done: Yes
 ```
 
-### add
+### `add`
 Adds a new Todo item to your list.
 
 Shortcuts: `a`
