@@ -19,13 +19,16 @@ todo {command} {argument}
 
 ## Commands
 #### `list`
-This shows you all your Todo items in a table.
+This shows you all your Todo items in a table. 
+
 Default command (this will run if you just enter `todo`)
 
+
 Shortcuts: `l`
+
 Arguments: none
 
-Example result:
+##### Example result:
 ```console
 ┌────┬────────┬──────┐
 │ Id │ Todo   │ Done │
@@ -39,10 +42,13 @@ Example result:
 #### `show`
 This shows you the Todo item that you specified.
 
-Shortcuts: `s`
+
+Shortcuts: `show`
+
 Arguments: `id` - Id of the Todo item.
 
-Example result:
+
+##### Example result:
 ```console
 Id: 1  Name:  Test     Done: Yes
 ```
@@ -50,10 +56,13 @@ Id: 1  Name:  Test     Done: Yes
 #### `add`
 Adds a new Todo item to your list.
 
+
 Shortcuts: `a`
+
 Arguments: `description` - Description of the action needed to mark this as Done. Quotation marks is not needed for longer descriptions.
 
-Example result:
+
+##### Example result:
 ```console
 Test has been added to your list of todos.
 ```
@@ -61,10 +70,13 @@ Test has been added to your list of todos.
 #### `done`
 Marks a Todo item as Done.
 
+
 Shortcuts: `d`
+
 Arguments: `id` - Id of the Todo item.
 
-Example result:
+
+##### Example result:
 ```console
 Test is done, good job!
 ```
@@ -72,10 +84,13 @@ Test is done, good job!
 #### `remove`
 Removes a Todo item from your list.
 
+
 Shortcuts: `r`
+
 Arguments: `id` - Id of the Todo item.
 
-Example result:
+
+##### Example result:
 ```console
 Test has been removed.
 ```
