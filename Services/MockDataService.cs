@@ -5,15 +5,21 @@ namespace Todo.Services
 {
     public class MockDataService : ITodoDataService
     {
-        private readonly string _filePath = "C:\\Martin\\Projects\\Todo\\MockDB\\mockdb.json";
+        private readonly string _filePath = $"{Environment.CurrentDirectory}\\mockdb.json";
 
-        private List<TodoItem> _todos;
+        private List<TodoItem> _todos = new List<TodoItem>();
         public MockDataService()
         {
+            if(!File.Exists(_filePath))
+            {
+                // Creates the file and appends correct json.
+                SaveChanges();
+            }
+
             ReadFromFile();
         }
 
-        public TodoItem GetTodo(int id)
+        public TodoItem? GetTodo(int id)
         {
             var todo = _todos
                 .Where(x => x.Id == id)
@@ -28,13 +34,6 @@ namespace Todo.Services
             return todo;
         }
 
-        public int GetTodoIndex(int id)
-        {
-            var todo = GetTodo(id);
-
-            return _todos.IndexOf(todo);
-        }
-
         public List<TodoItem> GetTodos()
         {
             return _todos;
@@ -42,6 +41,10 @@ namespace Todo.Services
 
         public void CreateTodo(TodoItem todo)
         {
+            todo.Id = _todos.Any()
+                ? (_todos.Max(x => x.Id) + 1)
+                : 1;
+
             _todos.Add(todo);
 
             var saveSucceded = SaveChanges();
@@ -101,7 +104,7 @@ namespace Todo.Services
             string? jsonData = "";
             try
             {
-                jsonData = File.ReadAllText(_filePath);      
+                jsonData = File.ReadAllText(_filePath);  
             }
             catch (System.Exception exc)
             {
@@ -115,7 +118,7 @@ namespace Todo.Services
                 return false;
             }
 
-            _todos = JsonConvert.DeserializeObject<List<TodoItem>>(jsonData);
+            _todos = JsonConvert.DeserializeObject<List<TodoItem>>(jsonData) ?? new List<TodoItem>();
 
             return true;
         }
