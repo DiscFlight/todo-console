@@ -28,7 +28,7 @@ Shortcuts: `l`
 
 Arguments: none
 
-##### Example result:
+#### Example result:
 ```console
 ┌────┬────────┬──────┐
 │ Id │ Todo   │ Done │
@@ -48,7 +48,7 @@ Shortcuts: `show`
 Arguments: `id` - Id of the Todo item.
 
 
-##### Example result:
+#### Example result:
 ```console
 Id: 1  Name:  Test     Done: Yes
 ```
@@ -62,7 +62,7 @@ Shortcuts: `a`
 Arguments: `description` - Description of the action needed to mark this as Done. Quotation marks is not needed for longer descriptions.
 
 
-##### Example result:
+#### Example result:
 ```console
 Test has been added to your list of todos.
 ```
@@ -76,7 +76,7 @@ Shortcuts: `d`
 Arguments: `id` - Id of the Todo item.
 
 
-##### Example result:
+#### Example result:
 ```console
 Test is done, good job!
 ```
@@ -90,7 +90,7 @@ Shortcuts: `r`
 Arguments: `id` - Id of the Todo item.
 
 
-##### Example result:
+#### Example result:
 ```console
 Test has been removed.
 ```
