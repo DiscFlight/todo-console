@@ -1,3 +1,4 @@
+using Spectre.Console;
 using Todo.Models;
 
 namespace Todo.Services
@@ -6,10 +7,17 @@ namespace Todo.Services
     {
         public static void ListTodos(List<TodoItem> items)
         {
+            var table = new Table();
+            table.AddColumn(new TableColumn("Id"));
+            table.AddColumn(new TableColumn("Todo"));
+            table.AddColumn(new TableColumn("Done"));
             foreach(var item in items)
             {
-                ShowTodo(item);
+                var done = item.Done ? "Yes" : "No";
+                table.AddRow(item.Id.ToString(), item.Name, done);
             }
+
+            AnsiConsole.Write(table);
         }
 
         public static void ShowTodo(TodoItem item)
