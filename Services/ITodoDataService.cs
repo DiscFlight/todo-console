@@ -7,7 +7,7 @@ namespace Todo.Services
         TodoItem GetTodo(int id);
         List<TodoItem> GetTodos();
         void CreateTodo(TodoItem todo);
-        void  CompleteTodo(int id);
+        void CompleteTodo(int id);
         void DeleteTodo(int id);
     }
 }

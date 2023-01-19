@@ -8,16 +8,14 @@ internal class Program
         var services = new ServiceCollection();
         ConfigureServices(services);
 
-        foreach(var arg in args)
-        {
-            Console.WriteLine(arg);
-        }
+        new CommandHandler()
+            .Run(args);
     }
 
     private static void ConfigureServices(IServiceCollection services)
     {
         services
-            .AddSingleton<ITodoDataService, TodoDataService>()
-            .AddSingleton<IInterfacer, Interfacer>();
+            .AddSingleton<ICommandHandler, CommandHandler>()
+            .AddSingleton<ITodoDataService, MockDataService>();
     }
 }

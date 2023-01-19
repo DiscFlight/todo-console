@@ -1,23 +1,30 @@
+using System.Text;
 using Todo.Models;
 
 namespace Todo.Services
 {
-    public class CommandHandler
-    {
-        public ITodoDataService _dataService { get; }
-        public IInterfacer _interfacer { get; }
-        public CommandHandler(ITodoDataService dataService, IInterfacer interfacer)
-        {
-            _interfacer = interfacer;
-            _dataService = dataService;
-            
-        }
-        public void Run(string[] args) 
-        {
-            var command = args[0];
-            var data = args[1];
 
-            switch(command.ToLower())
+    public class CommandHandler : ICommandHandler
+    {
+        private ITodoDataService _dataService { get; }
+        public CommandHandler()
+        {
+            _dataService = new MockDataService();
+        }
+
+        public void Run(string[] args)
+        {
+            var command = args.Any() ? args[0] : "list";
+            
+            var argumentBuilder = new StringBuilder();
+            for (int i = 1; i < args.Length; i++)
+            {
+                argumentBuilder.Append(" " + args[i]);
+            }
+
+            var argument = argumentBuilder.ToString();
+
+            switch (command.ToLower())
             {
                 case "list":
                 case "l":
@@ -26,20 +33,19 @@ namespace Todo.Services
                     break;
                 case "show":
                 case "s":
-                    if (int.TryParse(data, out int id))
-                    {
-                        _interfacer.Error(new IdMissingException("No id provided. Correct format is 'todo show {id}'"));
-                    }
-                    ShowTodo(id);
+                    ShowTodo(argument);
                     break;
                 case "add":
                 case "a":
+                    AddTodo(argument);
                     break;
                 case "done":
                 case "d":
+                    CompleteTodo(argument);
                     break;
                 case "remove":
                 case "r":
+                    RemoveTodo(argument);
                     break;
             }
         }
@@ -48,12 +54,60 @@ namespace Todo.Services
         {
             var todos = _dataService.GetTodos();
 
-            _interfacer.ListTodos(todos);
+            Interfacer.ListTodos(todos);
         }
 
-        private void ShowTodo(int id)
+        private void ShowTodo(string? data)
         {
-            var todo = _dataService.GetTodo(id)
+            if (!int.TryParse(data, out int id))
+            {
+                Interfacer.Error(new IdMissingException());
+
+                return;
+            }
+
+            var todo = _dataService.GetTodo(id);
+
+            Interfacer.ShowTodo(todo);
+        }
+
+        private void AddTodo(string? data)
+        {
+            if (string.IsNullOrWhiteSpace(data))
+            {
+                Interfacer.Error(new NameMissingException());
+
+                return;
+            }
+            var todo = new TodoItem(data);
+
+            _dataService.CreateTodo(todo);
+        }
+
+        private void CompleteTodo(string? data)
+        {
+            if (!int.TryParse(data, out int id))
+            {
+                Interfacer.Error(new IdMissingException());
+
+                return;
+            }
+
+            _dataService.CompleteTodo(id);
+        }
+
+        private void RemoveTodo(string? data)
+        {
+            if (!int.TryParse(data, out int id))
+            {
+                Interfacer.Error(new IdMissingException());
+
+                return;
+            }
+
+            _dataService.DeleteTodo(id);
+
+            // Interfacer.TodoRemoved()
         }
     }
 }

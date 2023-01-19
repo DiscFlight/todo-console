@@ -2,36 +2,48 @@ using Todo.Models;
 
 namespace Todo.Services
 {
-    public class Interfacer : IInterfacer
+    public static class Interfacer
     {
-        public void ListTodos(List<TodoItem> items)
+        public static void ListTodos(List<TodoItem> items)
         {
-            throw new NotImplementedException();
+            foreach(var item in items)
+            {
+                ShowTodo(item);
+            }
         }
 
-        public void ShowTodo(TodoItem item)
+        public static void ShowTodo(TodoItem item)
         {
-            throw new NotImplementedException();
+            var done = item.Done ? "Yes" : "No";
+            Console.WriteLine($" Id: {item.Id}\tName: {item.Name}\t Done: {done}");
         }
 
-        public void TodoAdded(TodoItem item)
+        public static void TodoAdded(TodoItem item)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"{item.Name} has been added to your list of todos.");
         }
 
-        public void TodoCompleted(TodoItem item)
+        public static void TodoCompleted(TodoItem item)
         {
-            throw new NotImplementedException();
+            if(item.Done)
+                Console.WriteLine($"{item.Name} is done, good job!");
+            else
+                Console.WriteLine($"{item.Name} has been reset.");
         }
 
-        public void TodoRemoved(TodoItem item)
+        public static void TodoRemoved(TodoItem item)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"{item.Name} has been removed!");
         }
         
-        public void Error(Exception error)
+        public static void Error(Exception error)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(ConstructErrorMessage(error));
+        }
+
+        private static string ConstructErrorMessage(Exception error)
+        {
+            return error.InnerException?.Message ?? error.Message;
         }
     }
 }
