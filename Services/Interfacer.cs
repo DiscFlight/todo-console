@@ -41,7 +41,7 @@ namespace Todo.Services
 
         public static void TodoRemoved(TodoItem item)
         {
-            Console.WriteLine($"{item.Name} has been removed!");
+            Console.WriteLine($"{item.Name} has been removed.");
         }
         
         public static void Error(Exception error)
