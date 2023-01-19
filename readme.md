@@ -39,6 +39,7 @@ Arguments: none
 └────┴────────┴──────┘
 ```
 
+
 #### `show`
 This shows you the Todo item that you specified.
 
@@ -52,6 +53,7 @@ Arguments: `id` - Id of the Todo item.
 ```console
 Id: 1  Name:  Test     Done: Yes
 ```
+
 
 #### `add`
 Adds a new Todo item to your list.
@@ -67,6 +69,7 @@ Arguments: `description` - Description of the action needed to mark this as Done
 Test has been added to your list of todos.
 ```
 
+
 #### `done`
 Marks a Todo item as Done.
 
@@ -81,6 +84,7 @@ Arguments: `id` - Id of the Todo item.
 Test is done, good job!
 ```
 
+
 #### `remove`
 Removes a Todo item from your list.
 
@@ -94,6 +98,7 @@ Arguments: `id` - Id of the Todo item.
 ```console
 Test has been removed.
 ```
+
 
 ## Dependencies
 - Newtonsoft.Json
