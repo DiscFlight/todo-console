@@ -7,16 +7,12 @@
 3. (Optional) Add '{Project_Directory}\bin\Debug\net7.0' to you PATH or equivilent in other environments than Windows.
 4. Open a terminal at the path above (or any directory if the PATH has been added) and start using the Todo Console application
 
-----------
-
 ## Syntax
 The default syntax is the following:
 
 ```console
 todo {command} {argument}
 ```
-
-----------
 
 ## Commands
 ### list
@@ -58,8 +54,6 @@ Example result:
 ```console
 Test4 has been added to your list of todos.
 ```
-
-----------
 
 ## Dependencies
 - Newtonsoft.Json
