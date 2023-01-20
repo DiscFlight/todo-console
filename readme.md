@@ -38,6 +38,7 @@ Arguments: none
 │ 3  │  Test3 │ Yes  │
 └────┴────────┴──────┘
 ```
+----------
 
 
 #### `show`
@@ -53,6 +54,7 @@ Arguments: `id` - Id of the Todo item.
 ```console
 Id: 1  Name:  Test     Done: Yes
 ```
+----------
 
 
 #### `add`
@@ -68,6 +70,7 @@ Arguments: `description` - Description of the action needed to mark this as Done
 ```console
 Test has been added to your list of todos.
 ```
+----------
 
 
 #### `done`
@@ -83,6 +86,7 @@ Arguments: `id` - Id of the Todo item.
 ```console
 Test is done, good job!
 ```
+----------
 
 
 #### `remove`
