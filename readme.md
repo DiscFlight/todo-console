@@ -44,7 +44,7 @@ Arguments: none
 This shows you the Todo item that you specified.
 
 
-Shortcuts: `show`
+Shortcuts: `s`
 
 Arguments: `id` - Id of the Todo item.
 
